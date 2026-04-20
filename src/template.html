@@ -10,21 +10,27 @@
       <div class="sidebar">
         <h1>To-Do List</h1>
         <div class="line"></div>
-        <button class="sidebar-btn" id="add">
+        <button class="sidebar-btn" id="add-task">
           <i data-lucide="plus-circle"></i>Add Task
         </button>
-        <button class="sidebar-btn"><i data-lucide="home"></i>Home</button>
-        <button class="sidebar-btn"><i data-lucide="calendar"></i>Today</button>
-        <button class="sidebar-btn"><i data-lucide="list"></i>Upcoming</button>
-        <button class="sidebar-btn">
+        <button class="sidebar-btn" id="home-btn">
+          <i data-lucide="home"></i>Home
+        </button>
+        <button class="sidebar-btn" id="today-btn">
+          <i data-lucide="calendar"></i>Today
+        </button>
+        <button class="sidebar-btn" id="upcoming-btn">
+          <i data-lucide="list"></i>Upcoming
+        </button>
+        <button class="sidebar-btn" id="overdue-btn">
           <i data-lucide="alert-circle"></i>Overdue
         </button>
-        <button class="sidebar-btn">
-          <i data-lucide="check-check"></i>Completed
+        <button class="sidebar-btn" id="done-btn">
+          <i data-lucide="check-check"></i>Done
         </button>
         <div class="line"></div>
       </div>
-      <div class="main-content"></div>
+      <div class="main-content" id="main-content"></div>
     </div>
   </body>
 </html>
