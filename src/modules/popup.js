@@ -1,59 +1,74 @@
 export const loadPopup = () => {
-	const contentDiv = document.getElementById("main-content");
+  const contentDiv = document.getElementById("main-content");
 
-	const popupOverly = document.createElement("div");
-	const popupBox = document.createElement("div");
-	const popupFormTitle = document.createElement("h2");
-	const popupForm = document.createElement("form");
-	const titleLabel = document.createElement("label");
-	const descriptionLabel = document.createElement("label");
-	const dateLabel = document.createElement("label");
-	const titleInput = document.createElement("input");
-	const descriptionInput = document.createElement("input");
-	const dateInput = document.createElement("input");
+  const popupOverly = document.createElement("div");
+  const popupBox = document.createElement("div");
+  // Title
+  const titleDiv = document.createElement("div");
+  const titleText = document.createElement("p");
+  const titleInput = document.createElement("input");
+  // Description
+  const descriptionDiv = document.createElement("div");
+  const descriptionText = document.createElement("p");
+  const descriptionInput = document.createElement("input");
+  // Date
+  const dateDiv = document.createElement("div");
+  const dateText = document.createElement("p");
+  const dateInput = document.createElement("input");
+  // Buttons
+  const buttonDiv = document.createElement("div");
+  const submitBtn = document.createElement("button");
+  const closeBtn = document.createElement("button");
 
-	const submitBtn = document.createElement("button");
-	const closeBtn = document.createElement("button");
+  // classList
+  popupOverly.classList.add("popupOverly");
+  popupBox.classList.add("popupBox");
+  titleDiv.classList.add("titleDiv");
+  titleText.classList.add("titleText");
+  titleInput.classList.add("titleInput");
+  descriptionDiv.classList.add("descriptionDiv");
+  descriptionText.classList.add("descriptionText");
+  descriptionInput.classList.add("descriptionInput");
+  dateDiv.classList.add("dateDiv");
+  dateText.classList.add("dateText");
+  dateInput.classList.add("dateInput");
+  buttonDiv.classList.add("buttonDiv");
+  submitBtn.classList.add("submitBtn");
+  closeBtn.classList.add("closeBtn");
 
-	// Class Names
-	popupOverly.classList.add("popupOverly");
-	popupBox.classList.add("popupBox");
-	popupFormTitle.classList.add("popupFormTitle");
-	popupForm.classList.add("popupForm");
-	titleLabel.classList.add("formLabel");
-	descriptionLabel.classList.add("formLabel");
-	dateLabel.classList.add("formLabel");
-	titleInput.classList.add("formInput");
-	descriptionInput.classList.add("formInput");
-	dateInput.classList.add("formInput");
-	submitBtn.classList.add("submitBtn");
+  titleText.textContent = "Title:";
+  descriptionText.textContent = "Description:";
+  dateText.textContent = "Date:";
+  submitBtn.textContent = "Submit";
+  closeBtn.textContent = "Close";
 
-	titleLabel.textContent = "Title:";
-	descriptionLabel.textContent = "Description:";
-	dateLabel.textContent = "Date:";
+  titleInput.setAttribute("type", "text");
+  descriptionInput.setAttribute("type", "text");
+  dateInput.setAttribute("type", "date");
 
-	titleInput.setAttribute("type", "text");
-	descriptionInput.setAttribute("type", "text");
-	dateInput.setAttribute("type", "date");
+  // DIVs
+  titleDiv.appendChild(titleText);
+  titleDiv.appendChild(titleInput);
 
-	popupFormTitle.textContent = "To-Do List";
-	popupForm.appendChild(titleLabel);
-	popupForm.appendChild(titleInput);
-	popupForm.appendChild(descriptionLabel);
-	popupForm.appendChild(descriptionInput);
-	popupForm.appendChild(dateLabel);
-	popupForm.appendChild(dateInput);
+  descriptionDiv.appendChild(descriptionText);
+  descriptionDiv.appendChild(descriptionInput);
 
-	popupBox.appendChild(popupFormTitle);
-	popupBox.appendChild(popupForm);
-	popupBox.appendChild(closeBtn);
+  dateDiv.appendChild(dateText);
+  dateDiv.appendChild(dateInput);
 
-	popupOverly.appendChild(popupBox);
+  buttonDiv.appendChild(submitBtn);
+  buttonDiv.appendChild(closeBtn);
 
-	contentDiv.appendChild(popupOverly);
+  popupBox.appendChild(titleDiv);
+  popupBox.appendChild(descriptionDiv);
+  popupBox.appendChild(dateDiv);
+  popupBox.appendChild(buttonDiv);
 
-	function togglePopup() {
-		const overly = document.getElementsByClassName("popupOverly");
-		overly.classList.toggle("show");
-	}
+  popupOverly.appendChild(popupBox);
+
+  closeBtn.onclick = function togglePopup() {
+    popupOverly.remove();
+  };
+
+  contentDiv.appendChild(popupOverly);
 };
