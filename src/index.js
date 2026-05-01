@@ -6,6 +6,7 @@ import { loadUpcoming } from "./modules/upcoming.js";
 import { loadOverdue } from "./modules/overdue.js";
 import { loadDone } from "./modules/completed.js";
 import { loadPopup } from "./modules/popup.js";
+import { loadTask } from "./modules/task.js";
 
 import {
   createIcons,
@@ -44,26 +45,6 @@ todayBtn.addEventListener("click", loadToday);
 upcomingBtn.addEventListener("click", loadUpcoming);
 overdueBtn.addEventListener("click", loadOverdue);
 doneBtn.addEventListener("click", loadDone);
-addTask.addEventListener("click", loadPopup);
-
-function createTask() {
-  const card = document.createElement("div");
-  const title = document.createElement("h1");
-  const description = document.createElement("p");
-  const date = document.createElement("p");
-  card.classList.add("card");
-
-  title.classList.add("title");
-  description.classList.add("description");
-  date.classList.add("date");
-
-  title.textContent = "Title:";
-  description.textContent = "Description:";
-  date.textContent = "Date:";
-
-  card.appendChild(title);
-  card.appendChild(description);
-  card.appendChild(date);
-
-  contentDiv.appendChild(card);
-}
+addTask.addEventListener("click", function () {
+  loadPopup(loadTask);
+});

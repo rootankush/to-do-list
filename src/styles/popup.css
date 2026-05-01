@@ -1,38 +1,66 @@
 .popupOverly {
+	position: fixed;
+	top: 0;
+	left: 19rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 60vh;
+	height: 100vh;
+	width: 87vw;
 }
 
 .popupBox {
 	background-color: var(--bg-default);
-	width: 50%;
+	width: 20vw;
 	padding: 3rem 1rem;
 	border: none;
 	border-radius: 1rem;
+	text-align: center;
 }
 
-.titleText {
-	display: inline-block;
-	font-size: 2rem;
-	margin: 0 1rem;
-	border: none;
-}
-
-.descriptionText {
-	display: inline-block;
-	margin: 0 1rem;
-	border: none;
-}
-
+.titleText,
+.descriptionText,
 .dateText {
 	display: inline-block;
 	margin: 0 1rem;
 	border: none;
+	color: var(--ui-light);
+}
+
+.titleText {
+	font-size: 2rem;
+}
+
+.titleInput,
+.descriptionInput,
+.dateInput {
+	border: 1px solid var(--ui-light);
+	width: 70%;
+	padding: 1rem;
+	margin: 1rem;
+	border-radius: 0.3rem;
+	background-color: var(--bg-light);
+	color: var(--ui-light);
 }
 
 .buttonDiv {
 	margin: 0 1rem;
 	border: none;
+	text-align: center;
+}
+
+.submitBtn,
+.closeBtn {
+	border: none;
+	padding: 1rem;
+	margin: 1.4rem 1rem 0 1rem;
+	border-radius: 0.3rem;
+}
+
+.submitBtn {
+	background-color: var(--accent-color-3);
+}
+
+.closeBtn {
+	background-color: var(--accent-color-2);
 }

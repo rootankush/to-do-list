@@ -1,5 +1,5 @@
-export const loadPopup = () => {
-  const contentDiv = document.getElementById("main-content");
+export const loadPopup = (callback) => {
+  const contentDiv = document.getElementById("content");
 
   const popupOverly = document.createElement("div");
   const popupBox = document.createElement("div");
@@ -67,6 +67,16 @@ export const loadPopup = () => {
   popupOverly.appendChild(popupBox);
 
   closeBtn.onclick = function togglePopup() {
+    popupOverly.remove();
+  };
+
+  submitBtn.onclick = function () {
+    const data = {
+      title: titleInput.value,
+      description: descriptionInput.value,
+      date: dateInput.value,
+    };
+    callback(data);
     popupOverly.remove();
   };
 

@@ -18,7 +18,9 @@
 	--ui-main: #cccccc;
 	--ui-light: #e6e6e6;
 
-	--accent-color: #fa8128;
+	--accent-color-1: #fa8128;
+	--accent-color-2: #e63946;
+	--accent-color-3: #2a9d8f;
 }
 
 body {
@@ -39,7 +41,7 @@ h1 {
 .sidebar {
 	display: flex;
 	flex-direction: column;
-	width: auto;
+	width: 15vw;
 	height: 100vh;
 	background-color: var(--bg-default);
 	padding: 1rem;
@@ -48,7 +50,7 @@ h1 {
 
 #add-task {
 	color: var(--bg-dark);
-	background-color: var(--accent-color);
+	background-color: var(--accent-color-1);
 	border-radius: 0.2rem;
 }
 
@@ -111,4 +113,11 @@ h1 {
 .dateHolder {
 	display: flex;
 	align-items: center;
+}
+
+.disabled {
+	color: var(--bg-dark);
+	background-color: var(--accent-color-1);
+	border-radius: 0.2rem;
+	pointer-events: none;
 }
