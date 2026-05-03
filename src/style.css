@@ -100,14 +100,6 @@ h1 {
 	padding: 3rem 10rem;
 }
 
-.card {
-	display: flex;
-	flex-direction: column;
-	background-color: var(--bg-light);
-	padding: 1rem;
-	border-radius: 0.5rem;
-}
-
 .titleHolder,
 .descriptionHolder,
 .dateHolder {

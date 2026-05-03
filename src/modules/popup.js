@@ -10,7 +10,7 @@ export const loadPopup = (callback) => {
   // Description
   const descriptionDiv = document.createElement("div");
   const descriptionText = document.createElement("p");
-  const descriptionInput = document.createElement("input");
+  const descriptionInput = document.createElement("textarea");
   // Date
   const dateDiv = document.createElement("div");
   const dateText = document.createElement("p");
@@ -76,6 +76,7 @@ export const loadPopup = (callback) => {
       description: descriptionInput.value,
       date: dateInput.value,
     };
+
     callback(data);
     popupOverly.remove();
   };

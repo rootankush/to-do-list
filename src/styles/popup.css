@@ -15,7 +15,6 @@
 	padding: 3rem 1rem;
 	border: none;
 	border-radius: 1rem;
-	text-align: center;
 }
 
 .titleText,
@@ -27,20 +26,21 @@
 	color: var(--ui-light);
 }
 
-.titleText {
-	font-size: 2rem;
-}
-
 .titleInput,
 .descriptionInput,
 .dateInput {
 	border: 1px solid var(--ui-light);
-	width: 70%;
-	padding: 1rem;
+	width: 87%;
+	padding: 0.5rem;
 	margin: 1rem;
 	border-radius: 0.3rem;
 	background-color: var(--bg-light);
 	color: var(--ui-light);
+}
+
+.descriptionInput {
+	min-height: 1rem;
+	resize: vertical;
 }
 
 .buttonDiv {
