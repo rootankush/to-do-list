@@ -6,9 +6,8 @@ import {
   loadToday,
   loadUpcoming,
   loadOverdue,
-  loadDone,
 } from "./modules/tabs.js";
-import { loadStorage } from "./modules/storage.js";
+import { loadStorage, masterStorage } from "./modules/storage.js";
 import { loadPopup } from "./modules/popup.js";
 import { loadTask } from "./modules/task.js";
 
@@ -34,4 +33,15 @@ createIcons({
   },
 });
 
-loadHome();
+function checkLocalStorage() {
+  if (localStorage.getItem("todos") != null) {
+    let storedUser = localStorage.getItem("todos");
+    let storedData = JSON.parse(storedUser);
+    for (let i = 0; i < storedData.length; i++) {
+      masterStorage.push(storedData[i]);
+    }
+    loadHome();
+  }
+}
+
+checkLocalStorage();

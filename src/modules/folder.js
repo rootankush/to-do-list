@@ -1,0 +1,1 @@
+export const createFolder = function () {};

@@ -15,6 +15,14 @@ export const loadPopup = (callback) => {
   const dateDiv = document.createElement("div");
   const dateText = document.createElement("p");
   const dateInput = document.createElement("input");
+  // Priority
+  const priorityDiv = document.createElement("div");
+  const priorityBtn = document.createElement("button");
+  const priorityContent = document.createElement("div");
+  const priorityLow = document.createElement("a");
+  const priorityMid = document.createElement("a");
+  const priorityHigh = document.createElement("a");
+
   // Buttons
   const buttonDiv = document.createElement("div");
   const submitBtn = document.createElement("button");
@@ -32,13 +40,24 @@ export const loadPopup = (callback) => {
   dateDiv.classList.add("dateDiv");
   dateText.classList.add("dateText");
   dateInput.classList.add("dateInput");
+  priorityDiv.classList.add("priorityDiv");
+  priorityBtn.classList.add("priorityBtn");
+  priorityContent.classList.add("priorityContent");
+  priorityLow.classList.add("dropdownLink");
+  priorityMid.classList.add("dropdownLink");
+  priorityHigh.classList.add("dropdownLink");
   buttonDiv.classList.add("buttonDiv");
   submitBtn.classList.add("submitBtn");
   closeBtn.classList.add("closeBtn");
+  priorityContent.id = "priorityContent";
 
   titleText.textContent = "Title:";
   descriptionText.textContent = "Description:";
   dateText.textContent = "Date:";
+  priorityLow.textContent = "Low";
+  priorityMid.textContent = "Mid";
+  priorityHigh.textContent = "High";
+  priorityBtn.textContent = "Priority";
   submitBtn.textContent = "Submit";
   closeBtn.textContent = "Close";
 
@@ -53,6 +72,12 @@ export const loadPopup = (callback) => {
   descriptionDiv.appendChild(descriptionText);
   descriptionDiv.appendChild(descriptionInput);
 
+  priorityContent.appendChild(priorityLow);
+  priorityContent.appendChild(priorityMid);
+  priorityContent.appendChild(priorityHigh);
+  priorityDiv.appendChild(priorityBtn);
+  priorityDiv.appendChild(priorityContent);
+
   dateDiv.appendChild(dateText);
   dateDiv.appendChild(dateInput);
 
@@ -62,6 +87,7 @@ export const loadPopup = (callback) => {
   popupBox.appendChild(titleDiv);
   popupBox.appendChild(descriptionDiv);
   popupBox.appendChild(dateDiv);
+  popupBox.appendChild(priorityDiv);
   popupBox.appendChild(buttonDiv);
 
   popupOverly.appendChild(popupBox);
@@ -75,10 +101,49 @@ export const loadPopup = (callback) => {
       title: titleInput.value,
       description: descriptionInput.value,
       date: dateInput.value,
+      priority: selectedPriority,
     };
 
     callback(data);
     popupOverly.remove();
+  };
+
+  priorityBtn.onclick = function myFunction() {
+    document.getElementById("priorityContent").classList.toggle("show");
+  };
+
+  let selectedPriority = "";
+
+  priorityLow.onclick = function () {
+    priorityBtn.textContent = "Priority: Low";
+    priorityContent.classList.remove("show");
+    selectedPriority = "Low";
+  };
+
+  priorityMid.onclick = function () {
+    priorityBtn.textContent = "Priority: Mid";
+    priorityContent.classList.remove("show");
+    selectedPriority = "Mid";
+  };
+
+  priorityHigh.onclick = function () {
+    priorityBtn.textContent = "Priority: High";
+    priorityContent.classList.remove("show");
+    selectedPriority = "High";
+  };
+
+  // Close the dropdown menu if the user clicks outside of it
+  window.onclick = function (event) {
+    if (!event.target.matches(".priorityBtn")) {
+      let dropdowns = document.getElementsByClassName("priorityContent");
+      let i;
+      for (i = 0; i < dropdowns.length; i++) {
+        let openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains("show")) {
+          openDropdown.classList.remove("show");
+        }
+      }
+    }
   };
 
   contentDiv.appendChild(popupOverly);

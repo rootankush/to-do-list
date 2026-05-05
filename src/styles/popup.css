@@ -64,3 +64,48 @@
 .closeBtn {
 	background-color: var(--accent-color-2);
 }
+
+.priorityBtn {
+	background-color: var(--bg-light);
+	color: var(--ui-light);
+	padding: 1rem;
+	font-size: 0.9rem;
+	border: none;
+	border-radius: 0.3rem;
+	cursor: pointer;
+}
+
+.priorityBtn:hover,
+.priorityBtn:focus {
+	background-color: #2980b9;
+}
+
+.priorityDiv {
+	position: relative;
+	display: inline-block;
+	margin-left: 8rem;
+}
+
+.priorityContent {
+	display: none;
+	position: absolute;
+	background-color: #1f1f1f;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.priorityContent a {
+	color: #ddd;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.priorityContent a:hover {
+	border: 1px solid red;
+}
+
+.show {
+	display: block;
+}

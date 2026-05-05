@@ -27,7 +27,9 @@ export const filterList = function () {
   }
 
   function getHomeTask(task) {
-    loadTask(task);
+    task.forEach((task) => {
+      loadTask(task);
+    });
   }
 
   function getTodaysTask(task) {

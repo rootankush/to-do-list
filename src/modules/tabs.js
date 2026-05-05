@@ -33,14 +33,14 @@ export const loadOverdue = () => {
   header.textContent = "Overdue";
   mainContent.appendChild(header);
 };
-
-export const loadDone = () => {
-  const mainContent = document.getElementById("main-content");
-  mainContent.textContent = "";
-  const header = document.createElement("h1");
-  header.textContent = "Done";
-  mainContent.appendChild(header);
-};
+//
+// export const loadDone = () => {
+//   const mainContent = document.getElementById("main-content");
+//   mainContent.textContent = "";
+//   const header = document.createElement("h1");
+//   header.textContent = "Done";
+//   mainContent.appendChild(header);
+// };
 
 export let currentview = "";
 
@@ -50,7 +50,6 @@ const homeBtn = document.getElementById("home-btn");
 const todayBtn = document.getElementById("today-btn");
 const upcomingBtn = document.getElementById("upcoming-btn");
 const overdueBtn = document.getElementById("overdue-btn");
-const doneBtn = document.getElementById("done-btn");
 
 homeBtn.addEventListener("click", function () {
   currentview = "home";
@@ -72,11 +71,11 @@ overdueBtn.addEventListener("click", function () {
   filterList();
   console.log(currentview);
 });
-doneBtn.addEventListener("click", function () {
-  currentview = "done";
-  filterList();
-  console.log(currentview);
-});
+// doneBtn.addEventListener("click", function () {
+//   currentview = "done";
+//   filterList();
+//   console.log(currentview);
+// });
 addTask.addEventListener("click", function () {
   loadPopup(loadStorage);
 });
