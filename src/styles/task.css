@@ -17,3 +17,37 @@
 	margin: 1.4rem 1rem 0 1rem;
 	border-radius: 0.3rem;
 }
+
+.customCheckbox input[type="checkbox"] {
+	display: none;
+}
+
+.customCheckbox .checkmark {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background-color: #eee;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	margin-right: 8px;
+	vertical-align: middle;
+	position: relative;
+	cursor: pointer;
+}
+
+.customCheckbox input:checked + .checkmark::after {
+	content: "";
+	position: absolute;
+	left: 5px;
+	top: 1px;
+	width: 6px;
+	height: 12px;
+	border: solid #333;
+	border-width: 0 2px 2px 0;
+	transform: rotate(45deg);
+}
+
+.completedTask {
+	opacity: 0.6;
+	text-decoration: line-through;
+}

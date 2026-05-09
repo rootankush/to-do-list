@@ -1,4 +1,9 @@
-export const loadPopup = (callback) => {
+import { projectStorage } from "./storage";
+import { currentview } from "./tabs";
+
+export const loadPopup = (callback, taskEdit = null) => {
+  let selectedProject = currentview;
+
   const contentDiv = document.getElementById("content");
 
   const popupOverly = document.createElement("div");
@@ -22,6 +27,10 @@ export const loadPopup = (callback) => {
   const priorityLow = document.createElement("a");
   const priorityMid = document.createElement("a");
   const priorityHigh = document.createElement("a");
+  //Project
+  const projectDiv = document.createElement("div");
+  const projectBtn = document.createElement("button");
+  const projectContent = document.createElement("div");
 
   // Buttons
   const buttonDiv = document.createElement("div");
@@ -46,10 +55,14 @@ export const loadPopup = (callback) => {
   priorityLow.classList.add("dropdownLink");
   priorityMid.classList.add("dropdownLink");
   priorityHigh.classList.add("dropdownLink");
+  projectDiv.classList.add("priorityDiv");
+  projectBtn.classList.add("priorityBtn");
+  projectContent.classList.add("priorityContent");
   buttonDiv.classList.add("buttonDiv");
   submitBtn.classList.add("submitBtn");
   closeBtn.classList.add("closeBtn");
   priorityContent.id = "priorityContent";
+  projectContent.id = "projectContent";
 
   titleText.textContent = "Title:";
   descriptionText.textContent = "Description:";
@@ -58,6 +71,7 @@ export const loadPopup = (callback) => {
   priorityMid.textContent = "Mid";
   priorityHigh.textContent = "High";
   priorityBtn.textContent = "Priority";
+  projectBtn.textContent = `${currentview}`;
   submitBtn.textContent = "Submit";
   closeBtn.textContent = "Close";
 
@@ -78,6 +92,9 @@ export const loadPopup = (callback) => {
   priorityDiv.appendChild(priorityBtn);
   priorityDiv.appendChild(priorityContent);
 
+  projectDiv.appendChild(projectBtn);
+  projectDiv.appendChild(projectContent);
+
   dateDiv.appendChild(dateText);
   dateDiv.appendChild(dateInput);
 
@@ -88,28 +105,73 @@ export const loadPopup = (callback) => {
   popupBox.appendChild(descriptionDiv);
   popupBox.appendChild(dateDiv);
   popupBox.appendChild(priorityDiv);
+  popupBox.appendChild(projectDiv);
   popupBox.appendChild(buttonDiv);
 
   popupOverly.appendChild(popupBox);
+
+  let taskToEdit = taskEdit;
+  if (taskEdit) {
+    titleInput.value = taskEdit.title;
+    descriptionInput.value = taskEdit.description;
+    dateInput.value = taskEdit.date;
+    priorityBtn.textContent = `Priority: ${taskEdit.priority}`;
+    projectBtn.textContent = taskEdit.project;
+    selectedProject = taskEdit.project;
+    submitBtn.textContent = "Update Task";
+  }
 
   closeBtn.onclick = function togglePopup() {
     popupOverly.remove();
   };
 
   submitBtn.onclick = function () {
-    const data = {
-      title: titleInput.value,
-      description: descriptionInput.value,
-      date: dateInput.value,
-      priority: selectedPriority,
-    };
-
-    callback(data);
+    if (taskToEdit) {
+      console.log("Before mutation:", taskToEdit.title);
+      taskToEdit.title = titleInput.value;
+      console.log("After mutation:", taskToEdit.title);
+      taskToEdit.description = descriptionInput.value;
+      taskToEdit.date = dateInput.value;
+      taskToEdit.priority = selectedPriority;
+      taskToEdit.project = selectedProject;
+      callback(taskToEdit);
+    } else {
+      const data = {
+        title: titleInput.value,
+        description: descriptionInput.value,
+        date: dateInput.value,
+        priority: selectedPriority,
+        project: selectedProject,
+        completed: false,
+      };
+      callback(data);
+    }
     popupOverly.remove();
   };
 
   priorityBtn.onclick = function myFunction() {
     document.getElementById("priorityContent").classList.toggle("show");
+  };
+
+  projectBtn.onclick = function myFunction() {
+    document.getElementById("projectContent").classList.toggle("show");
+    function createLinks() {
+      projectContent.textContent = "";
+      for (let i = 0; i < projectStorage.length; i++) {
+        const projectLink = document.createElement("a");
+        projectLink.classList.add("dropdownLink");
+        projectLink.textContent = `${projectStorage[i]}`;
+
+        projectLink.onclick = function () {
+          projectBtn.textContent = projectLink.textContent;
+          selectedProject = projectStorage[i];
+        };
+
+        projectContent.appendChild(projectLink);
+      }
+    }
+
+    createLinks();
   };
 
   let selectedPriority = "";

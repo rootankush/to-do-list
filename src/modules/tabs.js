@@ -1,6 +1,7 @@
-import { loadStorage } from "./storage.js";
+import { loadStorage, masterStorage, saveProject } from "./storage.js";
 import { loadPopup } from "./popup.js";
 import { filterList } from "./filter.js";
+import { createFolder } from "./folder.js";
 
 export const loadHome = () => {
   const mainContent = document.getElementById("main-content");
@@ -33,14 +34,6 @@ export const loadOverdue = () => {
   header.textContent = "Overdue";
   mainContent.appendChild(header);
 };
-//
-// export const loadDone = () => {
-//   const mainContent = document.getElementById("main-content");
-//   mainContent.textContent = "";
-//   const header = document.createElement("h1");
-//   header.textContent = "Done";
-//   mainContent.appendChild(header);
-// };
 
 export let currentview = "";
 
@@ -50,6 +43,7 @@ const homeBtn = document.getElementById("home-btn");
 const todayBtn = document.getElementById("today-btn");
 const upcomingBtn = document.getElementById("upcoming-btn");
 const overdueBtn = document.getElementById("overdue-btn");
+const addProject = document.getElementById("add-project-btn");
 
 homeBtn.addEventListener("click", function () {
   currentview = "home";
@@ -71,11 +65,33 @@ overdueBtn.addEventListener("click", function () {
   filterList();
   console.log(currentview);
 });
-// doneBtn.addEventListener("click", function () {
-//   currentview = "done";
-//   filterList();
-//   console.log(currentview);
-// });
 addTask.addEventListener("click", function () {
   loadPopup(loadStorage);
 });
+addProject.addEventListener("click", function () {
+  createFolder(twocallBack);
+  filterList();
+});
+
+function twocallBack(projectName) {
+  saveProject(projectName.toLowerCase());
+  createTabs(projectName.toLowerCase());
+}
+
+export function createTabs(name) {
+  const SideBar = document.getElementById("sidebar");
+  const tab = document.createElement("button");
+  tab.classList.add("sidebar-btn");
+  tab.textContent = `${name}`;
+  SideBar.appendChild(tab);
+
+  tab.addEventListener("click", function () {
+    const mainContent = document.getElementById("main-content");
+    mainContent.textContent = "";
+    const header = document.createElement("h1");
+    header.textContent = `${name}`;
+    mainContent.appendChild(header);
+    currentview = `${name}`;
+    filterList();
+  });
+}

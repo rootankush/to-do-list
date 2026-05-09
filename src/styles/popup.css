@@ -13,12 +13,13 @@
 	background-color: var(--bg-default);
 	width: 20vw;
 	padding: 3rem 1rem;
-	border: none;
+	border: 1px solid var(--ui-light);
 	border-radius: 1rem;
 }
 
 .titleText,
 .descriptionText,
+.projectTitle,
 .dateText {
 	display: inline-block;
 	margin: 0 1rem;
@@ -28,6 +29,7 @@
 
 .titleInput,
 .descriptionInput,
+.projectInput,
 .dateInput {
 	border: 1px solid var(--ui-light);
 	width: 87%;
@@ -73,6 +75,7 @@
 	border: none;
 	border-radius: 0.3rem;
 	cursor: pointer;
+	margin: 1rem;
 }
 
 .priorityBtn:hover,

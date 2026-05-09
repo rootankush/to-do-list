@@ -7,6 +7,7 @@ const contentDiv = document.getElementById("main-content");
 const currentDate = new Date().toISOString().split("T")[0];
 
 export const filterList = function () {
+  contentDiv.textContent = " ";
   switch (currentview) {
     case "home":
       contentDiv.textContent = " ";
@@ -24,6 +25,16 @@ export const filterList = function () {
       contentDiv.textContent = " ";
       getUpcomingTask(masterStorage);
       break;
+    default:
+      getGeneral(masterStorage);
+  }
+
+  function getGeneral(task) {
+    task
+      .filter((task) => task.project === currentview)
+      .forEach((task) => {
+        loadTask(task);
+      });
   }
 
   function getHomeTask(task) {
