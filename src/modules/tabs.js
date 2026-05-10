@@ -48,22 +48,18 @@ const addProject = document.getElementById("add-project-btn");
 homeBtn.addEventListener("click", function () {
   currentview = "home";
   filterList();
-  console.log(currentview);
 });
 todayBtn.addEventListener("click", function () {
   currentview = "today";
   filterList();
-  console.log(currentview);
 });
 upcomingBtn.addEventListener("click", function () {
   currentview = "upcoming";
   filterList();
-  console.log(currentview);
 });
 overdueBtn.addEventListener("click", function () {
   currentview = "overdue";
   filterList();
-  console.log(currentview);
 });
 addTask.addEventListener("click", function () {
   loadPopup(loadStorage);

@@ -73,5 +73,3 @@ export const filterList = function () {
       });
   }
 };
-
-console.log(currentDate);

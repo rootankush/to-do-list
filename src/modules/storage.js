@@ -1,4 +1,4 @@
-import "./tabs.js";
+import { createTabs } from "./tabs.js";
 import { loadPopup } from "./popup.js";
 
 export const masterStorage = [];
