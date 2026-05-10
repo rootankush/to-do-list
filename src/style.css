@@ -43,6 +43,7 @@ h1 {
 	flex-direction: column;
 	width: 15vw;
 	height: 100vh;
+	position: sticky;
 	background-color: var(--bg-default);
 	padding: 1rem;
 	gap: 1rem;

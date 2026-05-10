@@ -13,8 +13,13 @@ import {
   CheckCheck,
 } from "lucide";
 import { filterList } from "./modules/filter.js";
+import {
+  checkLocalStorage,
+  checkLocalStorageProject,
+  loadDummyData,
+  masterStorage,
+} from "./modules/storage.js";
 
-// This function scans the DOM for 'data-lucide' attributes and replaces them with SVGs
 createIcons({
   icons: {
     PlusCircle,
@@ -27,6 +32,11 @@ createIcons({
 });
 
 function init() {
+  checkLocalStorage();
+  checkLocalStorageProject();
+  if (masterStorage.length === 0) {
+    loadDummyData();
+  }
   loadHome();
   filterList();
   console.log("Todo App Initialized");

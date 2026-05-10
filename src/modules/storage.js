@@ -1,4 +1,4 @@
-import { ArrowUp01 } from "lucide";
+import { loadTask } from "./dom-task.js";
 import { createTabs } from "./tabs.js";
 import { Todo } from "./todo-logic.js";
 
@@ -23,7 +23,45 @@ export const deleteTodo = (data) => {
   localStorage.setItem("todos", JSON.stringify(masterStorage));
 };
 
-function checkLocalStorage() {
+export const loadDummyData = () => {
+  const dummyTasks = [
+    new Todo(
+      "Learn Neovim",
+      "Master the hjkl keys",
+      "2026-05-11",
+      "High",
+      "home",
+    ),
+    new Todo(
+      "Build Robot",
+      "Assemble the wooden frame for the 4kg bot",
+      "2026-05-12",
+      "Mid",
+      "home",
+    ),
+    new Todo(
+      "Buy Momos",
+      "Treat yourself after coding",
+      "2026-05-11",
+      "Low",
+      "food",
+    ),
+    new Todo(
+      "Review TOP",
+      "Check the Todo List project requirements",
+      "2026-05-15",
+      "High",
+      "home",
+    ),
+  ];
+
+  dummyTasks.forEach((task) => {
+    masterStorage.push(task);
+    localStorage.setItem("todos", JSON.stringify(masterStorage));
+  });
+};
+
+export const checkLocalStorage = () => {
   if (localStorage.getItem("todos") != null) {
     let storedUser = localStorage.getItem("todos");
     let storedData = JSON.parse(storedUser);
@@ -40,9 +78,9 @@ function checkLocalStorage() {
       masterStorage.push(todoInstance);
     });
   }
-}
+};
 
-function checkLocalStorageProject() {
+export const checkLocalStorageProject = () => {
   if (localStorage.getItem("projects") != null) {
     let storedProject = localStorage.getItem("projects");
     let storedProjectData = JSON.parse(storedProject);
@@ -53,7 +91,4 @@ function checkLocalStorageProject() {
       createTabs(projectStorage[i]);
     }
   }
-}
-
-checkLocalStorage();
-checkLocalStorageProject();
+};
