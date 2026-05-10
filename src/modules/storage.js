@@ -1,5 +1,6 @@
+import { ArrowUp01 } from "lucide";
 import { createTabs } from "./tabs.js";
-import { loadPopup } from "./popup.js";
+import { Todo } from "./todo-logic.js";
 
 export const masterStorage = [];
 export const projectStorage = [];
@@ -26,9 +27,18 @@ function checkLocalStorage() {
   if (localStorage.getItem("todos") != null) {
     let storedUser = localStorage.getItem("todos");
     let storedData = JSON.parse(storedUser);
-    for (let i = 0; i < storedData.length; i++) {
-      masterStorage.push(storedData[i]);
-    }
+    masterStorage.length = 0;
+    storedData.forEach((item) => {
+      const todoInstance = new Todo(
+        item.title,
+        item.description,
+        item.date,
+        item.priority,
+        item.project,
+        item.completed,
+      );
+      masterStorage.push(todoInstance);
+    });
   }
 }
 

@@ -1,37 +1,13 @@
-import { loadStorage, masterStorage, saveProject } from "./storage.js";
+import { loadStorage, saveProject } from "./storage.js";
 import { loadPopup } from "./popup.js";
 import { filterList } from "./filter.js";
-import { createFolder } from "./folder.js";
+import { createFolder } from "./dom-tabs.js";
 
 export const loadHome = () => {
   const mainContent = document.getElementById("main-content");
   mainContent.textContent = "";
   const header = document.createElement("h1");
   header.textContent = "Home";
-  mainContent.appendChild(header);
-};
-
-export const loadToday = () => {
-  const mainContent = document.getElementById("main-content");
-  const header = document.createElement("h1");
-  mainContent.textContent = "";
-  header.textContent = "Today";
-  mainContent.appendChild(header);
-};
-
-export const loadUpcoming = () => {
-  const mainContent = document.getElementById("main-content");
-  mainContent.textContent = "";
-  const header = document.createElement("h1");
-  header.textContent = "Upcoming";
-  mainContent.appendChild(header);
-};
-
-export const loadOverdue = () => {
-  const mainContent = document.getElementById("main-content");
-  mainContent.textContent = "";
-  const header = document.createElement("h1");
-  header.textContent = "Overdue";
   mainContent.appendChild(header);
 };
 

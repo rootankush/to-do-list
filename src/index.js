@@ -1,20 +1,7 @@
 import "./style.css";
 import "./styles/popup.css";
 import "./styles/task.css";
-import {
-  loadHome,
-  loadToday,
-  loadUpcoming,
-  loadOverdue,
-  createTabs,
-} from "./modules/tabs.js";
-import {
-  loadStorage,
-  masterStorage,
-  projectStorage,
-} from "./modules/storage.js";
-import { loadPopup } from "./modules/popup.js";
-import { loadTask } from "./modules/task.js";
+import { loadHome } from "./modules/tabs.js";
 
 import {
   createIcons,
@@ -25,6 +12,7 @@ import {
   AlertCircle,
   CheckCheck,
 } from "lucide";
+import { filterList } from "./modules/filter.js";
 
 // This function scans the DOM for 'data-lucide' attributes and replaces them with SVGs
 createIcons({
@@ -37,4 +25,11 @@ createIcons({
     CheckCheck,
   },
 });
-loadHome();
+
+function init() {
+  loadHome();
+  filterList();
+  console.log("Todo App Initialized");
+}
+
+init();

@@ -1,5 +1,6 @@
 import { projectStorage } from "./storage";
 import { currentview } from "./tabs";
+import { Todo } from "./todo-logic";
 
 export const loadPopup = (callback, taskEdit = null) => {
   let selectedProject = currentview;
@@ -126,25 +127,24 @@ export const loadPopup = (callback, taskEdit = null) => {
   };
 
   submitBtn.onclick = function () {
+    const newTask = new Todo(
+      titleInput.value,
+      descriptionInput.value,
+      dateInput.value,
+      selectedPriority,
+      selectedProject,
+    );
     if (taskToEdit) {
-      console.log("Before mutation:", taskToEdit.title);
-      taskToEdit.title = titleInput.value;
-      console.log("After mutation:", taskToEdit.title);
-      taskToEdit.description = descriptionInput.value;
-      taskToEdit.date = dateInput.value;
-      taskToEdit.priority = selectedPriority;
-      taskToEdit.project = selectedProject;
-      callback(taskToEdit);
-    } else {
-      const data = {
+      const updateInfo = {
         title: titleInput.value,
         description: descriptionInput.value,
         date: dateInput.value,
         priority: selectedPriority,
         project: selectedProject,
-        completed: false,
       };
-      callback(data);
+      taskToEdit.updateDetails(updateInfo);
+    } else {
+      callback(newTask);
     }
     popupOverly.remove();
   };

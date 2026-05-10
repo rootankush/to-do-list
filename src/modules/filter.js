@@ -1,10 +1,12 @@
 import { currentview } from "./tabs";
 import { masterStorage } from "./storage";
-import { loadTask } from "./task";
+import { loadTask } from "./dom-task.js";
+import { format } from "date-fns";
 
 const contentDiv = document.getElementById("main-content");
 
-const currentDate = new Date().toISOString().split("T")[0];
+const currentDate = new Date();
+const formattedDate = format(currentDate, "dd/MM/yyyy");
 
 export const filterList = function () {
   contentDiv.textContent = " ";
@@ -46,7 +48,7 @@ export const filterList = function () {
   function getTodaysTask(task) {
     task
       .filter((task) => {
-        return task.date == currentDate;
+        return task.date == formattedDate;
       })
       .forEach((task) => {
         loadTask(task);
@@ -56,7 +58,7 @@ export const filterList = function () {
   function getOverdueTask(task) {
     task
       .filter((task) => {
-        return task.date < currentDate;
+        return task.date < formattedDate;
       })
       .forEach((task) => {
         loadTask(task);
@@ -66,7 +68,7 @@ export const filterList = function () {
   function getUpcomingTask(task) {
     task
       .filter((task) => {
-        return task.date > currentDate;
+        return task.date > formattedDate;
       })
       .forEach((task) => {
         loadTask(task);

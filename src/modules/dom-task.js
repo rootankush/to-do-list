@@ -56,8 +56,9 @@ export const loadTask = (data) => {
   card.appendChild(btnDiv);
 
   checkbox.addEventListener("change", function () {
-    data.completed = this.checked;
-    if (this.checked) {
+    data.toggleStatus();
+
+    if (data.completed) {
       card.classList.add("completedTask");
     } else {
       card.classList.remove("completedTask");
